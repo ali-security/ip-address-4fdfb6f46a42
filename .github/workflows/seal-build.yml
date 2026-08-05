@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: ["23", "20", "22", "24", "25"]
+        node-version: ['23', '20', '22', '24', '25']
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
@@ -34,6 +34,7 @@ jobs:
       - name: Run tests
         run: ./coverage.sh
 
+    timeout-minutes: 40
   pack:
     name: Pack the release tarball
     runs-on: ubuntu-latest
@@ -43,7 +44,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "23"
+          node-version: '23'
       - name: Configure npm time machine registry
         run: |
           npm config set registry https://time-machines-npm.sealsecurity.io/
@@ -61,3 +62,4 @@ jobs:
           name: ip-address-10.2.0-tgz
           path: ip-address-10.2.0.tgz
           if-no-files-found: error
+    timeout-minutes: 40
